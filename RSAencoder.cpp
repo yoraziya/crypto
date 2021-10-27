@@ -63,7 +63,7 @@ int main(){
   cout<<"mode should be one of:pqene,pqend,nedne,nednd"<<endl;
   cin>>mode;
   if(mode=="pqene"||mode=="pqend"){
-    cout<<"please follow the format:mode p q e cleartext"<<endl;
+    cout<<"please follow the format:"<<mode<<" p q e cleartext"<<endl;
     cin>>p>>q>>e;
     if(msb(p)!=msb(q)){
       cout<<"p and q are not same bits numbers"<<endl;
@@ -89,10 +89,10 @@ int main(){
       return 1;
     }
   }else if(mode=="nedne"||mode=="nednd"){
-    cout<<"please follow the format:mode n e d cleartext"<<endl;
+    cout<<"please follow the format:"<<mode<<" n e d cleartext"<<endl;
     cin>>n>>e>>d;
   }else if(mode=="nene"){
-    cout<<"please follow the format:mode n e cleartext"<<endl;
+    cout<<"please follow the format:"<<mode<<" n e cleartext"<<endl;
     cin>>n>>e;
   }else{
     cout<<"invalid mode"<<endl;
