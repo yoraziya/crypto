@@ -1,4 +1,4 @@
-//RSAcipher
+//RSAencoder
 #include <bits/stdc++.h>
 #include <boost/multiprecision/cpp_int.hpp>
 #include <boost/multiprecision/miller_rabin.hpp>
