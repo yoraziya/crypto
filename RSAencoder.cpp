@@ -59,12 +59,37 @@ bool checkedf(iint e,iint d,iint f){
 int main(){
   iint p,q,e,n,f,k,d;
   string mode;
-  cout<<"please follow the format:mode <depend on mode>"<<endl;
-  cout<<"mode should be one of:pqene,pqend,nedne,nednd"<<endl;
+  string tmps;
   cin>>mode;
-  if(mode=="pqene"||mode=="pqend"){
-    cout<<"please follow the format:"<<mode<<" p q e cleartext"<<endl;
-    cin>>p>>q>>e;
+  if(mode=="help"||mode=="?"){
+    cout<<"format: <mode> <keyarg> <cleartext>"<<endl;
+    cout<<"mode: <inputsyle><outputstyle>"<<endl;
+    cout<<"inputstyle: \"pqe\", \"ned\", \"ne\""<<endl;
+    cout<<"outputstyle: \"nu\", \"ne\", \"nd\""<<endl;
+    cout<<"[!] mode \"nend\" is not supported"<<endl;
+    cout<<"keyarg:"<<endl;
+    cout<<"  if <inputstyle> is \"pqe\": <p> <q> <e>"<<endl;
+    cout<<"  if <inputstyle> is \"ned\": <n> <e> <d>"<<endl;
+    cout<<"  if <inputstyle> is \"ne\" : <n> <e>"<<endl;
+    cout<<"output:"<<endl;
+    cout<<"  if <outputstyle> is \"nu\": <ciphertext>"<<endl;
+    cout<<"  if <outputstyle> is \"ne\": <n> <e> <ciphertext>"<<endl;
+    cout<<"  if <outputstyle> is \"nd\": <n> <d> <ciphertext>"<<endl;
+    cout<<"characters express same elements in wikipedia: https://en.wikipedia.org/wiki/RSA_(cryptosystem)";
+    return 0;
+  }else if(mode=="pqenu"||mode=="pqene"||mode=="pqend"){
+    try{
+      cin>>tmps;
+      p.assign(tmps);
+      cin>>tmps;
+      q.assign(tmps);
+      cin>>tmps;
+      e.assign(tmps);
+    }catch(runtime_error& re){
+      cout<<"invalid format"<<endl;
+      cout<<"please follow the format: \""<<mode<<"\" <p> <q> <e> <cleartext>"<<endl;
+      return 1;
+    }
     if(msb(p)!=msb(q)){
       cout<<"p and q are not same bits numbers"<<endl;
       return 1;
@@ -88,15 +113,39 @@ int main(){
       cout<<"ed != f mod f"<<endl;
       return 1;
     }
-  }else if(mode=="nedne"||mode=="nednd"){
-    cout<<"please follow the format:"<<mode<<" n e d cleartext"<<endl;
-    cin>>n>>e>>d;
-  }else if(mode=="nene"){
-    cout<<"please follow the format:"<<mode<<" n e cleartext"<<endl;
-    cin>>n>>e;
+  }else if(mode=="nednu"||mode=="nedne"||mode=="nednd"){
+    try{
+      cin>>tmps;
+      n.assign(tmps);
+      cin>>tmps;
+      e.assign(tmps);
+      cin>>tmps;
+      d.assign(tmps);
+    }catch(runtime_error& re){
+      cout<<"invalid format"<<endl;
+      cout<<"please follow the format: "<<mode<<" <n> <e> <d> <cleartext>"<<endl;
+      return 1;
+    }
+  }else if(mode=="nenu"||mode=="nene"){
+    try{
+      cin>>tmps;
+      n.assign(tmps);
+      cin>>tmps;
+      e.assign(tmps);
+    }catch(runtime_error& re){
+      cout<<"invalid format"<<endl;
+      cout<<"please follow the format: \""<<mode<<"\" <n> <e> <cleartext>"<<endl;
+      return 1;
+    }
   }else{
     cout<<"invalid mode"<<endl;
-      return 1;
+    cout<<"please follow the format: <mode> <keyarg> <cleartext>"<<endl;
+    cout<<"mode should be one of:"<<endl;
+    cout<<"\"pqenu\", \"pqene\", \"pqend\","<<endl;
+    cout<<"\"nednu\", \"nedne\", \"nednd\","<<endl;
+    cout<<"\"nenu\",  \"nene\""<<endl;
+    cout<<"for more detail input \"?\"";
+    return 1;
   }
   k=msb(n);
   string s,t="",u="";
@@ -137,7 +186,7 @@ int main(){
     t.push_back((char)((int)tmp+'0'));
     output%=pp;
   }
-  if(mode=="pqene"||mode=="pqend"||mode=="nedne"||mode=="nednd"){
+  if(mode!="nenu"&&mode!="nene"){
     iint input=0;
     pb=mp::pow((iint)2,(unsigned)(iint)6);
     iint er=0;
@@ -175,11 +224,9 @@ int main(){
     }
   }
   if(mode=="pqene"||mode=="nedne"||mode=="nene"){
-    cout<<n<<" "<<e<<" "<<t<<endl;
+    cout<<n<<" "<<e<<" ";
   }else if(mode=="pqend"||mode=="nednd"){
-    cout<<n<<" "<<d<<" "<<t<<endl;
-  }else{
-    cout<<"invalid mode"<<endl;
-    return 1;
+    cout<<n<<" "<<d<<" ";
   }
+  cout<<t<<endl;
 }
