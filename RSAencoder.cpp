@@ -9,16 +9,6 @@ namespace mp = boost::multiprecision;
 bool isprime(iint p){
   return miller_rabin_test(p, 1000);
 }
-iint gcd(iint a,iint b){
-  if(b==0){
-    return a;
-  }else{
-    return gcd(b,a%b);
-  }
-}
-bool checkfe(iint f,iint e){
-  return (gcd(f,e)==1);
-}
 pair<iint,iint> solvedio(iint a,iint b){
   a>b;
   if(b==0){
@@ -47,7 +37,7 @@ iint getinv(iint a,iint m){
   }else{
     iint ttmp=ans.first;
     while(ttmp<0){
-      ttmp+=m;
+      ttmp=(1-ttmp/m)*m+ttmp%m;
     }
     ttmp%=m;
     return ttmp;
@@ -100,7 +90,7 @@ int main(){
     }
     n=p*q;
     f=(p-1)*(q-1);
-    if(!checkfe(f,e)){
+    if(gcd(f,e)!=1){
       cout<<"f(n) and e are not coprimes"<<endl;
       return 1;
     }
