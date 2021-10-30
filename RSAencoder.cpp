@@ -139,7 +139,17 @@ int main(){
   }
   k=msb(n);
   string s,t="",u="";
+  s.reserve(1024);
+  t.reserve(1024);
+  u.reserve(1024);
+  char tmpc;
   cin>>s;
+  tmpc=cin.get();
+  while(!cin.eof()){
+    s.push_back(tmpc);
+    tmpc=cin.get();
+  };
+  cout<<"s:"<<s<<endl;
   iint tmp;
   iint bitset=0;
   for(int i=0;i<s.size();i++){
