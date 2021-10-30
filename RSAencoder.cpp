@@ -149,7 +149,6 @@ int main(){
     s.push_back(tmpc);
     tmpc=cin.get();
   };
-  cout<<"s:"<<s<<endl;
   iint tmp;
   iint bitset=0;
   for(int i=0;i<s.size();i++){
