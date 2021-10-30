@@ -148,7 +148,7 @@ int main(){
   while(!cin.eof()){
     s.push_back(tmpc);
     tmpc=cin.get();
-  };
+  }
   iint tmp;
   iint bitset=0;
   for(int i=0;i<s.size();i++){
