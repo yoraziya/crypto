@@ -205,7 +205,9 @@ int main(){
     for(int i=0;i<dig/8;i++){
       pp=mp::pow((iint)2,(unsigned)(dig-(i+1)*8));
       tmp=bitset/pp;
-      u.push_back((char)(short)tmp);
+      if(tmp!=0){
+        u.push_back((char)(short)tmp);
+      }
       bitset%=pp;
     }
     if(s!=u){
